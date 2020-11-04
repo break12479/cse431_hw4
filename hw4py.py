@@ -52,13 +52,14 @@ def insertionSort(arr):
  
 # driver code to test the above code
 if __name__ == '__main__':
-    seeds = [1,2,3]
-    n_ns = [1000, 1500, 2000, 2500, 3000, 5000]
+    seeds = [1,2,3,4,5]
+    n_ns = [50, 70, 100, 120, 150]
     
     for n_n in n_ns:
+        ma = 0
+        ia = 0
         for seed in seeds:
-            print("current number of elements is {}, current seed is {}".format(n_n, seed))
-
+            
             arr0,arr1 = [],[]
             for i in range(n_n):
                  tempRandNum = random.randint(0,sys.maxsize)
@@ -70,15 +71,21 @@ if __name__ == '__main__':
             mergeSort(arr0)
             end_m = time.time()
             total_m = end_m - start_m
-            print("{:<20s} {}".format("mergeSort:", total_m))
+            ma += total_m
 
             start_i = time.time()
             insertionSort(arr1)
             end_i = time.time()
             total_i = end_i - start_i
-            print("{:<20s} {}".format("insertionSort:", total_i))
+            ia += total_i
 
-
+        ma /= 5
+        ia /= 5
+        print("current number of elements is {}".format(n_n))
+        print("{:<20s} {}".format("mergeSort:", ma))
+        print("{:<20s} {}".format("insertionSort:", ia))
+        
+    print("end")
  
 # This code is contributed by Mayank Khanna
 # https://www.geeksforgeeks.org/merge-sort/
